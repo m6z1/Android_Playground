@@ -7,6 +7,10 @@ android {
     namespace 'com.m6z1.test_0525'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.m6z1.test_0525"
         minSdk 24
