@@ -1,7 +1,8 @@
+package com.m6z1.test_0525
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.m6z1.test_0525.SecondActivity
 import com.m6z1.test_0525.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {

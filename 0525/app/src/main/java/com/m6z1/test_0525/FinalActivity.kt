@@ -1,7 +1,8 @@
+package com.m6z1.test_0525
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.m6z1.test_0525.SecondActivity
 import com.m6z1.test_0525.databinding.ActivityFinalBinding
 import org.json.JSONObject
 import java.io.File
