@@ -6,4 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp">
+
+        <RadioButton
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:text="손명지"
+            android:textSize="40dp" />
+
+        <RadioButton
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:text="이예빈"
+            android:textSize="40dp" />
+
+        <RadioButton
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:text="조영우"
+            android:textSize="40dp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다음 페이지로"
+        android:textSize="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio_group" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
