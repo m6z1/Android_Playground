@@ -1,12 +1,14 @@
 package com.m6z1.test_0525
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.JsonObject
 import com.m6z1.test_0525.databinding.ActivityFinalBinding
-import org.json.JSONObject
-import java.io.File
-import java.io.FileOutputStream
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FinalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinalBinding
@@ -16,43 +18,35 @@ class FinalActivity : AppCompatActivity() {
         binding = ActivityFinalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val resultView = binding.textview
+
         // 이전 액티비티로부터 전달받은 값 가져오기
         val radioValue = intent.getStringExtra(SecondActivity.RADIO_BUTTON_VALUE_KEY)
-        val textValue = intent.getStringExtra(ThirdActivity.VIEW_VALUE_KEY)
+        val busIdValue = intent.getStringExtra(ThirdActivity.BUS_ID_VALUE_KEY)
+        val messageValue = intent.getStringExtra(ThirdActivity.MESSAGE_VALUE_KEY)
 
         // JSON 객체 생성
-        val jsonObject = JSONObject()
-        jsonObject.put("radioValue", radioValue)
-        jsonObject.put("textValue", textValue)
+        val jsonData = JsonObject()
+        jsonData.addProperty("id",radioValue)
+        jsonData.addProperty("busStopId",busIdValue)
+        jsonData.addProperty("message",messageValue)
 
-        // JSON 객체를 문자열로 변환
-        val jsonString = jsonObject.toString()
 
-        // JSON 파일로 저장하는 버튼 클릭 이벤트 처리
-        binding.btnDownload.setOnClickListener {
-            saveJsonToFile(jsonString)
-        }
-    }
-
-    private fun saveJsonToFile(jsonString: String) {
-        val fileName = "data.json"
-        val file = File(filesDir, fileName)
-
-        try {
-            // JSON 파일로 저장
-            val fileOutputStream = FileOutputStream(file)
-            fileOutputStream.write(jsonString.toByteArray())
-            fileOutputStream.close()
-
-            // 다운로드 완료 메시지 표시
-            showToast("JSON 파일 다운로드 완료: ${file.absolutePath}")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            showToast("JSON 파일 다운로드 실패")
-        }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        // POST 요청 보내기
+        Retrofit.service.sendRideBellData(jsonData).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    // 요청 성공
+                    val responseData = response.body()?.string()
+                    resultView.text = responseData
+                } else {
+                    resultView.text = "요청 실패"
+                    response.errorBody()?.string()
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.e("log", t.message.toString())
+            }
+        })
     }
 }
