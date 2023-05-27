@@ -20,3 +20,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+// dp, sp 차이
+// companion object
+// object
+// lambda function (lambda object)
+// constraint layout chaining, 0dp
+// 직렬화, 역직렬화
+// Data class 의 copy (deep copy)
+// binding 쓸 때 View 를 변수로 선언하지 말 것

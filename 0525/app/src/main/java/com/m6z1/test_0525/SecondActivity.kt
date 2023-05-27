@@ -18,6 +18,8 @@ class SecondActivity : AppCompatActivity() {
 
         val btn = binding.btnNext
 
+        val selectedModel = Selected.empty
+
         btn.setOnClickListener {
             val selectedRadioButtonId = binding.radioGroup.checkedRadioButtonId
 
@@ -26,9 +28,13 @@ class SecondActivity : AppCompatActivity() {
                 val selectedRadioButton = findViewById<RadioButton>(selectedRadioButtonId)
                 val selectedRadioButtonValue = selectedRadioButton.text.toString()
 
+                // copy, 안전한 복사
+                val selectedModel = selectedModel.copy(selectedRadioButtonValue)
+
                 // 데이터를 Intent에 저장하여 다음 화면으로 전달
                 val intent = Intent(this, ThirdActivity::class.java)
                 intent.putExtra(RADIO_BUTTON_VALUE_KEY, selectedRadioButtonValue)
+                intent.putExtra(RADIO_BUTTON_VALUE_KEY, selectedModel)
                 startActivity(intent)
             } else {
                 // 예외처리를 하는 습관을 들이자
