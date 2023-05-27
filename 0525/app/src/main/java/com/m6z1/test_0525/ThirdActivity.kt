@@ -15,7 +15,8 @@ class ThirdActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val textValue = binding.textview
+        val busId = binding.textview1
+        val message = binding.textview2
         val btn = binding.btnNext
 
         val radioValue = intent.getStringExtra(SecondActivity.RADIO_BUTTON_VALUE_KEY)
@@ -23,13 +24,15 @@ class ThirdActivity : AppCompatActivity() {
             // 데이터를 Intent에 저장하여 다음 화면으로 전달
             val intent = Intent(this, FinalActivity::class.java)
             intent.putExtra(SecondActivity.RADIO_BUTTON_VALUE_KEY, radioValue)
-            intent.putExtra(VIEW_VALUE_KEY, textValue.text.toString())
+            intent.putExtra(BUS_ID_VALUE_KEY, busId.text.toString())
+            intent.putExtra(MESSAGE_VALUE_KEY, message.text.toString())
 
             startActivity(intent)
         }
     }
 
     companion object {
-        const val VIEW_VALUE_KEY = "textValue"
+        const val BUS_ID_VALUE_KEY = "textValue"
+        const val MESSAGE_VALUE_KEY = "textValue"
     }
 }
