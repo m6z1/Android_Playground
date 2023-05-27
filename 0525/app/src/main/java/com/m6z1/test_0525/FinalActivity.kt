@@ -27,13 +27,13 @@ class FinalActivity : AppCompatActivity() {
 
         // JSON 객체 생성
         val jsonData = JsonObject()
-        jsonData.addProperty("id",radioValue)
-        jsonData.addProperty("busStopId",busIdValue)
-        jsonData.addProperty("message",messageValue)
+        jsonData.addProperty("id", radioValue)
+        jsonData.addProperty("busStopId", busIdValue)
+        jsonData.addProperty("message", messageValue)
 
 
         // POST 요청 보내기
-        Retrofit.service.sendRideBellData(jsonData).enqueue(object : Callback<ResponseBody> {
+        Retrofit.service.sendRideBellData(jsonData).enqueue(object : Callback<ResponseBody> { // 익명 함수 (Lambda Function)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     // 요청 성공
@@ -44,6 +44,7 @@ class FinalActivity : AppCompatActivity() {
                     response.errorBody()?.string()
                 }
             }
+
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.e("log", t.message.toString())
             }

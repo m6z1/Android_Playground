@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
         android:text="영우가 내준 0525 과제"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

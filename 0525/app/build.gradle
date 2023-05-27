@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.m6z1.test_0525'
-    compileSdk 33
+    compileSdk 32
 
     buildFeatures {
         viewBinding = true
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "com.m6z1.test_0525"
         minSdk 24
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
